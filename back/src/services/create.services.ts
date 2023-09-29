@@ -3,7 +3,6 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities";
 import { IUser } from "../interface/interface";
 import { UserResponseSchema } from "../schemas/user.schemas";
-// import { v4 } from "uuid";
 
 export const createUserUseService = async (userInfo: IUser): Promise<any> => {
   const useRepo = AppDataSource.getRepository(User);

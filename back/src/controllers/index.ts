@@ -1,4 +1,3 @@
-import { authTokenMiddleware } from "../middleware/authToken.meddleware";
 import { createUserController } from "./createUser.controller";
 import { deleteUserController } from "./deleteUser.controller";
 import { getProfileController } from "./getProfile.controller";
@@ -15,5 +14,4 @@ export {
   userLoginController,
   updateUserController,
   retrieverController,
-  authTokenMiddleware,
 };

@@ -3,7 +3,7 @@ import AppError from "../Errors/appError";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities";
 
-export const idExists = async (
+export const idExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

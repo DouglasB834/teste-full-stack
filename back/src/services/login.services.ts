@@ -9,9 +9,6 @@ import { sign } from "jsonwebtoken";
 export const userLoginService = async (
   body: IUserLogin
 ): Promise<IUserLoginReturn> => {
-  //validar se use existe, senha está correta
-  //validar senha
-  //gerar token e retorna
   const { email, password } = body;
   const userRepo = AppDataSource.getRepository(User);
 

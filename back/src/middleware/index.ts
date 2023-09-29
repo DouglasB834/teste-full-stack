@@ -1,5 +1,11 @@
-import { uniqueEmail } from "./uniqueEmail.middleware";
-import { idExists } from "./idExists.middleware";
+import { uniqueEmailMiddleware } from "./uniqueEmail.middleware";
+import { idExistsMiddleware } from "./idExists.middleware";
 import { verifyRequestPerSchema } from "./validateBody.meddleware";
+import { authTokenMiddleware } from "./authToken.meddleware";
 
-export { uniqueEmail, idExists, verifyRequestPerSchema };
+export {
+  uniqueEmailMiddleware,
+  idExistsMiddleware,
+  verifyRequestPerSchema,
+  authTokenMiddleware,
+};

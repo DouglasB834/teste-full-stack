@@ -3,6 +3,7 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities";
 import { IUserUpdate } from "../interface/interface";
 import { UserResponseSchema } from "../schemas/user.schemas";
+import AppError from "../Errors/appError";
 
 export const updateUserService = async (
   userInfo: IUserUpdate,
@@ -14,6 +15,12 @@ export const updateUserService = async (
   }
 
   const user = await userRepo.findOneBy({ id: userID });
+
+  const isEmailEcist = await userRepo.findOneBy({ email: userInfo.email });
+
+  if (isEmailEcist && userInfo.email !== user.email) {
+    throw new AppError(401, "Email already exists");
+  }
 
   const userUpdate = userRepo.create({
     ...user,
