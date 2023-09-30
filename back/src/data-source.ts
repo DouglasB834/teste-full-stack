@@ -37,7 +37,7 @@ export const setDataSourceConfig = (): DataSourceOptions => {
 
     url: dbURL,
     logging: true,
-    synchronize: false,
+    synchronize: true,
     entities: [entitiesPath],
     migrations: [migrationsPath],
   };

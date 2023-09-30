@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { retrieverService } from "../services/retriever.services";
+import { retrieverService } from "../../services/userServices";
 
 export const retrieverController = async (req: Request, res: Response) => {
   const { id } = req.params;

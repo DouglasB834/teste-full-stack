@@ -1,9 +1,9 @@
 import { compare } from "bcryptjs";
 import "dotenv/config";
-import AppError from "../Errors/appError";
-import { AppDataSource } from "../data-source";
-import { User } from "../entities";
-import { IUserLogin, IUserLoginReturn } from "../interface/interface";
+import AppError from "../../Errors/appError";
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities";
+import { IUserLogin, IUserLoginReturn } from "../../interface/interface";
 import { sign } from "jsonwebtoken";
 
 export const userLoginService = async (

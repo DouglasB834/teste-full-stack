@@ -1,6 +1,6 @@
-import AppError from "../Errors/appError";
-import { AppDataSource } from "../data-source";
-import { User } from "../entities";
+import AppError from "../../Errors/appError";
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities";
 
 export const deleteUserService = async (userID: string, ulrID: string) => {
   const userRepo = AppDataSource.getRepository(User);

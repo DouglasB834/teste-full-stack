@@ -3,7 +3,7 @@ import {
   authTokenMiddleware,
   idExistsMiddleware,
   uniqueEmailMiddleware,
-  verifyRequestPerSchema,
+  validateBodyMiddleware,
 } from "../middleware";
 import {
   createUserController,
@@ -12,14 +12,14 @@ import {
   getUserController,
   retrieverController,
   updateUserController,
-} from "../controllers";
+} from "../controllers/userControllers";
 import { userSchema } from "../schemas";
 
 export const userRouter = Router();
 
 userRouter.post(
-  "/create",
-  verifyRequestPerSchema(userSchema),
+  "/register",
+  validateBodyMiddleware(userSchema),
   uniqueEmailMiddleware,
   createUserController
 );
@@ -28,6 +28,6 @@ userRouter.get("/profile", authTokenMiddleware, getProfileController);
 userRouter.use("/users", authTokenMiddleware);
 
 userRouter.get("/users", getUserController);
-userRouter.get("/users/:id", idExistsMiddleware, retrieverController);
 userRouter.patch("/users", updateUserController);
+userRouter.get("/users/:id", idExistsMiddleware, retrieverController);
 userRouter.delete("/users/:id", idExistsMiddleware, deleteUserController);
