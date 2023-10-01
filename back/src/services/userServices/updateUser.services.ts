@@ -16,10 +16,12 @@ export const updateUserService = async (
 
   const user = await userRepo.findOneBy({ id: userID });
 
-  const isEmailEcist = await userRepo.findOneBy({ email: userInfo.email });
+  if (userInfo.email) {
+    const isEmailExist = await userRepo.findOneBy({ email: userInfo.email });
 
-  if (isEmailEcist && userInfo.email !== user.email) {
-    throw new AppError(400, "Email already exists");
+    if (isEmailExist.email !== user.email) {
+      throw new AppError(400, "Email already exists!!");
+    }
   }
 
   const userUpdate = userRepo.create({
