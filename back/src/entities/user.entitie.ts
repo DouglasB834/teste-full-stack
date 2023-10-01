@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
+import { Product } from "./product.entitie";
 
 @Entity("users")
 export default class User {
@@ -31,4 +33,9 @@ export default class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  // @OneToMany(() => Product, (Product) => Product.user, {
+  //   cascade: true,
+  // })
+  // product: Product[];
 }

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { AnySchema } from "yup";
 import AppError from "../Errors/appError";
 
-export const verifyRequestPerSchema =
+export const validateBodyMiddleware =
   (schema: AnySchema) =>
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {

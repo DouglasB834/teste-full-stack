@@ -1,5 +1,13 @@
-import { uniqueEmail } from "./uniqueEmail.middleware";
-import { idExists } from "./idExists.middleware";
-import { verifyRequestPerSchema } from "./validateBody.meddleware";
+import { uniqueEmailMiddleware } from "./uniqueEmail.middleware";
+import { idExistsMiddleware } from "./idExists.middleware";
+import { authTokenMiddleware } from "./authToken.meddleware";
+import { validateBodyMiddleware } from "./validateBody.meddleware";
+import { idProductExistMiddleware } from "./idProductExist.meddleware";
 
-export { uniqueEmail, idExists, verifyRequestPerSchema };
+export {
+  uniqueEmailMiddleware,
+  idExistsMiddleware,
+  validateBodyMiddleware,
+  authTokenMiddleware,
+  idProductExistMiddleware,
+};

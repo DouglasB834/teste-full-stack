@@ -1,4 +1,12 @@
-import { sessionSchema } from "./login.schema";
+import { sessionReturnSchema, sessionSchema } from "./login.schema";
+import { productSchema, productUpdateSchema } from "./product.schema";
 import { userSchema, userUpdateSchema } from "./user.schemas";
 
-export { sessionSchema, userSchema, userUpdateSchema };
+export {
+  sessionSchema,
+  sessionReturnSchema,
+  userSchema,
+  userUpdateSchema,
+  productSchema,
+  productUpdateSchema,
+};

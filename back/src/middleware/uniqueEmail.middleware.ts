@@ -3,7 +3,7 @@ import { User } from "../entities";
 import { AppDataSource } from "../data-source";
 import AppError from "../Errors/appError";
 
-export const uniqueEmail = async (
+export const uniqueEmailMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

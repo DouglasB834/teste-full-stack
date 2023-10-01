@@ -23,4 +23,33 @@ interface IUserLoginReturn {
   token: string;
 }
 
-export { IUser, IUserLogin, IUserUpdate, IUserLoginReturn, IUserResponse };
+interface IProduct {
+  name: string;
+  year: number;
+  price: number;
+  description: string;
+  avatar?: string;
+}
+interface IProductResponse {
+  id: string;
+  name: string;
+  year: number;
+  price: number;
+  isActive: boolean;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+  avatar?: string;
+}
+type IProductUpdate = Partial<IProduct>;
+
+export {
+  IUser,
+  IUserLogin,
+  IUserUpdate,
+  IUserLoginReturn,
+  IUserResponse,
+  IProduct,
+  IProductResponse,
+  IProductUpdate,
+};

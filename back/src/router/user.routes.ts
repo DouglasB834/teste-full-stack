@@ -1,22 +1,26 @@
 import { Router } from "express";
-import { idExists, uniqueEmail, verifyRequestPerSchema } from "../middleware";
 import {
   authTokenMiddleware,
+  idExistsMiddleware,
+  uniqueEmailMiddleware,
+  validateBodyMiddleware,
+} from "../middleware";
+import {
   createUserController,
   deleteUserController,
   getProfileController,
   getUserController,
   retrieverController,
   updateUserController,
-} from "../controllers";
+} from "../controllers/userControllers";
 import { userSchema } from "../schemas";
 
 export const userRouter = Router();
 
 userRouter.post(
-  "/create",
-  verifyRequestPerSchema(userSchema),
-  uniqueEmail,
+  "/register",
+  validateBodyMiddleware(userSchema),
+  uniqueEmailMiddleware,
   createUserController
 );
 userRouter.get("/profile", authTokenMiddleware, getProfileController);
@@ -24,6 +28,6 @@ userRouter.get("/profile", authTokenMiddleware, getProfileController);
 userRouter.use("/users", authTokenMiddleware);
 
 userRouter.get("/users", getUserController);
-userRouter.get("/users/:id", idExists, retrieverController);
 userRouter.patch("/users", updateUserController);
-userRouter.delete("/users/:id", idExists, deleteUserController);
+userRouter.get("/users/:id", idExistsMiddleware, retrieverController);
+userRouter.delete("/users/:id", idExistsMiddleware, deleteUserController);
