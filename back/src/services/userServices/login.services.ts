@@ -25,7 +25,7 @@ export const userLoginService = async (
 
   const token: string = sign({ email }, process.env.SECRET_KEY, {
     subject: user.id,
-    expiresIn: "1h",
+    expiresIn: "6h",
   });
   return { token };
 };
