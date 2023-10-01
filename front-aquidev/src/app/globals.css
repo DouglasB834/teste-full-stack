@@ -2,26 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root {
+  --colorBtn: #FFAD4B;
+  --colorsegundary: #FFCB45;
+  --colortextLigth: #1D1D1D;
+  --colorPrimary: #fff9ea;
+  --colorWhite: #fff;
+
+  --colorCardbg: #f1f1f1;
+  --colorBodybg: #D17956;
+}
+*{
+  transition: .3s linear;
+}
+
+.imgbgMd{
+  background: url("../../public//assets/image2.jpg");
+   background-size: cover;
+}
+
+.clippy{
+  clip-path: polygon(50% 0, 75% 3%, 99% 11%, 100% 33%, 100% 100%, 50% 100%, 0 100%, 0 33%, 1% 11%, 24% 3%);
+  padding-top: 10px ;
+
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background:var(--colorPrimary);
+  
+}
+
+img{
+  object-fit: cover;
+  max-width: 100%;
+}
+.container{
+  width: 100%;
+  max-width: 1200px;
+  padding:  0 1rem;
+  margin: 0 auto;
+}
+.limit_text{
+  max-width: 17ch;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
