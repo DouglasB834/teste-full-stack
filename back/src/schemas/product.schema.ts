@@ -13,6 +13,7 @@ export const productUpdateSchema: yup.ObjectSchema<IProductUpdate> = yup.object(
     name: yup.string().min(2).notRequired(),
     year: yup.number().notRequired(),
     price: yup.number().notRequired(),
+    isActive: yup.boolean().notRequired(),
     description: yup.string().min(2).notRequired(),
     avatar: yup.string().notRequired(),
   }

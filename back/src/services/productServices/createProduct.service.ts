@@ -16,5 +16,5 @@ export const createProductService = async (productData: any) => {
 
   const product = productRepo.create(productData);
   await productRepo.save(product);
-  return { product };
+  return product;
 };

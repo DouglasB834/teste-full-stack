@@ -9,11 +9,11 @@ export const updateProductService = async (
   const productRepo = AppDataSource.getRepository(Product);
   const product = await productRepo.findOneBy({ id: productID });
 
-  const userUpdate = productRepo.create({
+  const preoductUpdate = productRepo.create({
     ...product,
     ...productData,
   });
-  await productRepo.save(userUpdate);
+  await productRepo.save(preoductUpdate);
 
-  return userUpdate;
+  return preoductUpdate;
 };
