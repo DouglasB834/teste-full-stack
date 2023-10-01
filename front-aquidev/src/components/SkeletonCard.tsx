@@ -21,7 +21,6 @@ export const SkeletonCard = () => {
 
         <div className="flex justify-between items-center p-4">
           <Skeleton width={80} height={20} />
-
           <Skeleton width={30} height={20} />
         </div>
       </div>

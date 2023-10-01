@@ -8,7 +8,7 @@ import { FeedBack } from "../FeedBack";
 import { BannerFooter } from "../BannerFooter";
 import { Footer } from "../Footer";
 import rectangle from "../../../public/assets/rectangle.png";
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <div>
       <Header />
@@ -39,5 +39,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;

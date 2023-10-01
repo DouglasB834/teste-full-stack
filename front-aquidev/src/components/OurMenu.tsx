@@ -24,7 +24,7 @@ export const OurMenu = () => {
     SeterrorSearchBeer,
   } = useUserContext();
 
-  const [beerName, setBeerName] = useState<string | undefined>();
+  const [beerName, setBeerName] = useState<string | undefined>(undefined);
 
   const handlreBeerRouter = (id: number) => {
     router.push(`/beer?id=${id}`);
@@ -36,8 +36,8 @@ export const OurMenu = () => {
   const handleSearchBeerName = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (beerName !== undefined && beerName.trim()) {
-      searchBeerByName(beerName);
+    if (beerName !== undefined) {
+      searchBeerByName(beerName.trim());
     }
     if (beerName == "" || beerName == undefined) {
       ListBeer();
@@ -100,7 +100,7 @@ export const OurMenu = () => {
                   <Image
                     width={20}
                     height={20}
-                    src={item?.image_url}
+                    src={item?.image_url || ""}
                     alt={item?.name}
                     title={item?.name}
                     className="object-cover w-[40px] "

@@ -81,7 +81,7 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
   const ListBeer = async (): Promise<any> => {
     try {
       const response = await punkApi.get(`/beers?per_page=${pageLimite}`);
-      setBeersList(response.data);
+      setBeersList(response?.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -91,18 +91,18 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
   const searchBeerByName = async (name: string): Promise<void> => {
     try {
       const response = await punkApi.get(`/beers?beer_name=${name}`);
-      console.log(response.data);
-      if (response.data.length === 0) {
+
+      if (response?.data?.length === 0) {
         return SeterrorSearchBeer("Nenhum resultado encontrado");
       }
-      setBeersList(response.data);
+
+      setBeersList(response?.data);
     } catch (error) {
       console.log(error);
       ListBeer();
     }
     SeterrorSearchBeer(undefined);
   };
-
   const handlreClearSearchBeer = () => {
     setPagelimite((limit) => (limit = 8));
     SeterrorSearchBeer(undefined);
@@ -119,7 +119,7 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPath, token, pageLimite]);
+  }, [token, pageLimite]);
 
   const value = {
     user,

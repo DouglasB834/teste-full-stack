@@ -18,6 +18,7 @@ export default function Beer({
 }) {
   const { router } = useUserContext();
   const [beer, setBeer] = useState<IBeersList>({} as IBeersList);
+
   const handlreBeerId = async (id: number) => {
     try {
       const { data } = await punkApi.get(`/beers/${id}`);
@@ -42,7 +43,7 @@ export default function Beer({
           <div className="bg-primary rounded-md  w-[55%] sm:w-[44%]  flex items-center justify-center ">
             <figure className="w-[300px] min-h-[450px]  flex justify-center items-center p-4">
               <Image
-                src={beer?.image_url}
+                src={beer?.image_url || ""}
                 alt={beer?.name}
                 title={beer?.name}
                 width={150}
