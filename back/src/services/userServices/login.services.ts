@@ -20,7 +20,7 @@ export const userLoginService = async (
 
   const checkPassword = await compare(password, user.password);
   if (!checkPassword) {
-    throw new AppError(400, "Invalid login info. ");
+    throw new AppError(400, "Email or password incorrect.");
   }
 
   const token: string = sign({ email }, process.env.SECRET_KEY, {
