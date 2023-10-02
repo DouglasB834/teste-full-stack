@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubTitle } from "./SubTitle";
 import Image from "next/image";
-import { AiOutlineHeart } from "react-icons/ai";
 import { Button } from "./Button";
 import { useUserContext } from "@/context/userContex";
 import { IBeersList } from "@/interfaces";
@@ -19,17 +18,22 @@ export const OurMenu = () => {
     pageLimite,
     searchBeerByName,
     ListBeer,
-    handlreClearSearchBeer,
+    handleClearSearchBeer,
     errorSearchBeer,
     SeterrorSearchBeer,
+    searchBeerByIBV,
+    handlebeerListSortABV,
+    handlebeerListSortName,
   } = useUserContext();
 
   const [beerName, setBeerName] = useState<string | undefined>(undefined);
+  const [beerValue, setBeerValue] = useState<number | undefined>(undefined);
 
-  const handlreBeerRouter = (id: number) => {
+  const handleBeerRouter = (id: number) => {
     router.push(`/beer?id=${id}`);
   };
-  const handlreMoreBeers = () => {
+
+  const handleMoreBeers = () => {
     setPagelimite(pageLimite + 8);
   };
 
@@ -45,6 +49,12 @@ export const OurMenu = () => {
     }
   };
 
+  const handleListMinIBV = () => {
+    if (beerValue! >= 1) {
+      searchBeerByIBV(beerValue!);
+    }
+  };
+
   return (
     <section id="menu" className="container">
       <SubTitle
@@ -53,31 +63,66 @@ export const OurMenu = () => {
         subtitle="Our Popular Menu"
       />
 
-      <div className="flex justify-between items-center gap-2">
-        <form
-          onSubmit={(e) => handleSearchBeerName(e)}
-          action=""
-          className="border flex flex-col gap-1"
-        >
-          <div className=" flex justify-between ">
+      <div className="flex justify-between sm:items-center gap-2 px-4">
+        <div className="flex flex-wrap  gap-2 items-center mb-2">
+          <form
+            onSubmit={(e) => handleSearchBeerName(e)}
+            action=""
+            className="border flex flex-col gap-1 "
+          >
+            <div className=" flex justify-between ">
+              <input
+                type="text"
+                placeholder="Search beer name"
+                className="w-full bg-amber-200 outline-none px-2 "
+                onChange={(e) => setBeerName(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="bg-amber-500 p-2 hover:scale-105"
+              >
+                <FcSearch />
+              </button>
+            </div>
+            {errorSearchBeer && (
+              <span className="text-red-500 text-[1rem]">
+                {errorSearchBeer}{" "}
+              </span>
+            )}
+          </form>
+          <div className="flex">
+            <button
+              className="bg-amber-500 text-black hover:scale-105"
+              onClick={handleListMinIBV}
+            >
+              ABV %
+            </button>
             <input
-              type="text"
-              placeholder="Search beer name"
-              className="w-full bg-amber-200 outline-none px-2 "
-              onChange={(e) => setBeerName(e.target.value)}
+              type="number"
+              className=" w-[50px] bg-amber-200 p-[4px] text-center outline-none"
+              onChange={(e) => setBeerValue(e.target.valueAsNumber)}
             />
-            <button type="submit" className="bg-amber-500 p-2 hover:scale-105">
-              <FcSearch />
+          </div>
+          <div className="flex gap-4">
+            <button
+              className=" bg-amber-500 hover:scale-105 rounded-md  w-[80px] h-[35px] hover:bg-slate-800 hover:text-white "
+              onClick={handlebeerListSortABV}
+            >
+              min ABV
+            </button>
+            <button
+              className=" bg-amber-500 hover:scale-105 rounded-md w-[110px] h-[35px] hover:bg-slate-800 hover:text-white "
+              onClick={handlebeerListSortName}
+            >
+              sort by name
             </button>
           </div>
-          {errorSearchBeer && (
-            <span className="text-red-500 text-[1rem]">{errorSearchBeer} </span>
-          )}
-        </form>
+        </div>
+
         <div>
           <button
-            className="bg-amber-500 rounded-md text-black hover:text-white h-[40px] m-1 px-1 sm:p-2 hover:bg-slate-800 text-sm sm:text-base"
-            onClick={() => handlreClearSearchBeer()}
+            className="flex items-center justify-center bg-amber-500 rounded-md text-black hover:text-white sm:w-[150px] h-[35px]  px-2 sm:p-3 hover:bg-slate-800 text-sm sm:text-base"
+            onClick={() => handleClearSearchBeer()}
           >
             clear search
           </button>
@@ -94,9 +139,9 @@ export const OurMenu = () => {
               <li
                 key={item?.id}
                 className="flex flex-col justify-between min-w-[175px] w-[240px] h-[360px] shadow-lg rounded-[1rem] bg-colorCardbg my-4  cursor-pointer"
-                onClick={() => handlreBeerRouter(item?.id)}
+                onClick={() => handleBeerRouter(item?.id)}
               >
-                <figure className="flex justify-center items-center bg-colorCardbg p-4 rounded-t-[1rem] h-[230px] bg-amber-200 hover:scale-105 ">
+                <figure className="flex justify-center items-center bg-colorCardbg p-4 rounded-t-[1rem] h-[230px] bg-amber-200 hover:scale-105 border-2 border-primary ">
                   <Image
                     width={20}
                     height={20}
@@ -117,8 +162,8 @@ export const OurMenu = () => {
                   <div className="flex flex-wrap  justify-between items-center p-4">
                     <p className="font-bold text-[.9rem]">R$ {price()}</p>
                     <div className="text-[.9rem]">
-                      <span>{item?.abv}% ABV</span>
-                      <span>{item?.ibu}% IBU</span>
+                      <span> ABV {item?.abv}% /</span>
+                      <span>IBU {item?.ibu}%</span>
                     </div>
                   </div>
                 </div>
@@ -128,9 +173,9 @@ export const OurMenu = () => {
 
       <div
         className="m-auto w-[100px] my-[2rem] j"
-        onClick={() => handlreMoreBeers()}
+        onClick={() => handleMoreBeers()}
       >
-        <Button aria-label="Se more menu" text="More menu" />
+        <Button aria-label="Se more menu" text="Show more" />
       </div>
     </section>
   );

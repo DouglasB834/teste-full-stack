@@ -16,6 +16,6 @@ export const dataWeServe = [
   {
     title: "Best Quality",
     img: courier,
-    description: "The best quality of food for you",
+    description: "The best quality of beer for you",
   },
 ];

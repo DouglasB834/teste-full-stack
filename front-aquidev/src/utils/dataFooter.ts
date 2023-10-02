@@ -1,4 +1,7 @@
 import logo from "../../public/assets/logo.png";
+import { BsFacebook } from "react-icons/bs";
+import { BiLogoInstagramAlt } from "react-icons/bi";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 export const dataFooter = [
   {
@@ -6,7 +9,17 @@ export const dataFooter = [
       {
         logo: logo,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. sobre a ideia ",
-        links: ["instagram", "facebook", "twitter"],
+        links: [
+          {
+            img: BiLogoInstagramAlt,
+          },
+          {
+            img: BsFacebook,
+          },
+          {
+            img: AiFillTwitterCircle,
+          },
+        ],
       },
     ],
   },
@@ -14,7 +27,20 @@ export const dataFooter = [
     company: [
       {
         title: "Company",
-        texts: ["About Us", "How it Works", "work with us"],
+        links: [
+          {
+            id: "menu",
+            text: "Menu",
+          },
+          {
+            id: "aboutUs",
+            text: "About Us",
+          },
+          {
+            id: "howitworks",
+            text: "How it Works",
+          },
+        ],
       },
     ],
   },

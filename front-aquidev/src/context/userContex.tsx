@@ -103,10 +103,35 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
     }
     SeterrorSearchBeer(undefined);
   };
-  const handlreClearSearchBeer = () => {
+
+  const searchBeerByIBV = async (value: number): Promise<void> => {
+    try {
+      const response = await punkApi.get(`/beers?abv_lt=${value}`);
+      setBeersList(response?.data);
+    } catch (error) {
+      console.log(error);
+      ListBeer();
+    }
+  };
+
+  const handleClearSearchBeer = () => {
     setPagelimite((limit) => (limit = 8));
     SeterrorSearchBeer(undefined);
     ListBeer();
+  };
+
+  const handlebeerListSortABV = () => {
+    const sortedBeerList = [...beersList];
+    sortedBeerList.sort((a: IBeersList, b: IBeersList) => a.abv - b.abv);
+    setBeersList(sortedBeerList);
+  };
+
+  const handlebeerListSortName = () => {
+    const sortedBeerListName = [...beersList];
+    sortedBeerListName.sort((a, b) => a.name.localeCompare(b.name));
+    console.log(sortedBeerListName);
+
+    setBeersList(sortedBeerListName);
   };
 
   useEffect(() => {
@@ -119,7 +144,7 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, pageLimite]);
+  }, [currentPath, token, pageLimite]);
 
   const value = {
     user,
@@ -138,7 +163,10 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
     setPagelimite,
     searchBeerByName,
     ListBeer,
-    handlreClearSearchBeer,
+    handleClearSearchBeer,
+    searchBeerByIBV,
+    handlebeerListSortABV,
+    handlebeerListSortName,
   };
 
   return <UseContext.Provider value={value}>{children}</UseContext.Provider>;

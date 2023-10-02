@@ -18,9 +18,13 @@ export const Footer = () => {
                     <Image width={90} alt="logo Lest's food" src={item.logo} />
                   </div>
                   <p className="text-sm w-[30ch]">{item.text}</p>
-                  {item.links?.map((item, i) => (
-                    <span key={i}> {item} </span>
-                  ))}
+                  <ul className="flex  gap-2 text-[1.2rem]">
+                    {item.links?.map((item, i) => (
+                      <li key={i}>
+                        <a href="#">{<item.img />}</a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}
@@ -28,8 +32,11 @@ export const Footer = () => {
             {item.company?.map((item, i) => (
               <ul key={i}>
                 <h3 className="font-semibold text-lg ">{item.title}</h3>
-                {item.texts?.map((item, i) => (
-                  <li key={i}> {item} </li>
+                {item.links?.map((item, i) => (
+                  <li key={i}>
+                    {" "}
+                    <a href={`#${item.id}`}>{item.text}</a>{" "}
+                  </li>
                 ))}
               </ul>
             ))}

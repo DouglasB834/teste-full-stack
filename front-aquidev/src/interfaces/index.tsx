@@ -38,7 +38,10 @@ export interface IUserContext {
   setPagelimite: Dispatch<SetStateAction<number>>;
   searchBeerByName: (name: string) => void;
   ListBeer: () => void;
-  handlreClearSearchBeer: () => void;
+  handleClearSearchBeer: () => void;
+  searchBeerByIBV(ibv: number): void;
+  handlebeerListSortABV: () => void;
+  handlebeerListSortName: () => void;
 }
 
 export interface IBeersList {
