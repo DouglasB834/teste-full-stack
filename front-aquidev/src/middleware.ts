@@ -5,6 +5,7 @@ export default function middleware(req: NextRequest) {
 
   const signInURL = new URL("/", req.url);
   const homeURL = new URL("/home", req.url);
+
   if (req.nextUrl.pathname === "/home" && !token) {
     return NextResponse.redirect(signInURL);
   }
@@ -16,5 +17,5 @@ export default function middleware(req: NextRequest) {
 
 export const config = {
   middleware: "blocking",
-  matcher: ["/", "/home", "/beer"],
+  matcher: ["/", "/home", "/beer/:path*"],
 };

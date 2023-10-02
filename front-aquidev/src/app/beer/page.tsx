@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { useUserContext } from "@/context/userContex";
 import { IBeersList } from "@/interfaces";
+import Cookie from "js-cookie";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -12,9 +13,7 @@ import { BiDish } from "react-icons/bi";
 export default function Beer({
   searchParams,
 }: {
-  searchParams: {
-    id: string;
-  };
+  searchParams: { id: string };
 }) {
   const { router } = useUserContext();
   const [beer, setBeer] = useState<IBeersList>({} as IBeersList);
@@ -30,10 +29,14 @@ export default function Beer({
   const handleBack = () => {
     router.push("/home");
   };
+  const token = Cookie.get("user_token");
 
   useEffect(() => {
     handlreBeerId(Number(searchParams.id));
-  }, [searchParams.id]);
+    if (!token) {
+      router.push("/");
+    }
+  }, [router, searchParams, token]);
 
   return (
     <section aria-label="details product page" className="">
