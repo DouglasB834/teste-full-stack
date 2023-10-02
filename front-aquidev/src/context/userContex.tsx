@@ -124,14 +124,15 @@ export const UserProvider = ({ children }: IUserChildrenProps) => {
     const sortedBeerList = [...beersList];
     sortedBeerList.sort((a: IBeersList, b: IBeersList) => a.abv - b.abv);
     setBeersList(sortedBeerList);
+    SeterrorSearchBeer(undefined);
   };
 
   const handlebeerListSortName = () => {
     const sortedBeerListName = [...beersList];
     sortedBeerListName.sort((a, b) => a.name.localeCompare(b.name));
     console.log(sortedBeerListName);
-
     setBeersList(sortedBeerListName);
+    SeterrorSearchBeer(undefined);
   };
 
   useEffect(() => {

@@ -10,9 +10,8 @@ export const BannerFooter = () => {
       <div className="imgbgMd w-full h-full flex justify-center items-center   rounded-md">
         <div className=" text-center  ">
           <h3 className=" text-[1.1rem] sm:text-2xl font-semibold mb-4 text-white">
-            Join our menber and get discount up to 50%
+            First order get 5% off discount
           </h3>
-          <Button text="Get our order" />
         </div>
       </div>
     </div>

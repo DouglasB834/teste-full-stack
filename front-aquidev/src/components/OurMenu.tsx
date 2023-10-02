@@ -63,6 +63,11 @@ export const OurMenu = () => {
         subtitle="Our Popular Menu"
       />
 
+      {errorSearchBeer && (
+        <span className="text-red-500 text-[1rem] pl-4">
+          {errorSearchBeer}{" "}
+        </span>
+      )}
       <div className="flex justify-between sm:items-center gap-2 px-4">
         <div className="flex flex-wrap  gap-2 items-center mb-2">
           <form
@@ -84,11 +89,6 @@ export const OurMenu = () => {
                 <FcSearch />
               </button>
             </div>
-            {errorSearchBeer && (
-              <span className="text-red-500 text-[1rem]">
-                {errorSearchBeer}{" "}
-              </span>
-            )}
           </form>
           <div className="flex">
             <button

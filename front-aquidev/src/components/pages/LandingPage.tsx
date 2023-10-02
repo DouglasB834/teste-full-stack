@@ -42,16 +42,6 @@ export const LandingPage = () => {
               {isLogin ? "Register" : "Login"}
             </button>
           </div>
-          {isLogin && (
-            <div className="flex items-center justify-center mt-4 ">
-              <button
-                title="button login google"
-                className="flex items-center justify-center w-[210px] gap-1 border border-amber-300 p-3 rounded-[1rem] hover:text-white  hover:bg-primary"
-              >
-                <FcGoogle /> Login with Google
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>
