@@ -9,6 +9,9 @@ export default function middleware(req: NextRequest) {
   if (req.nextUrl.pathname === "/home" && !token) {
     return NextResponse.redirect(signInURL);
   }
+  if (req.nextUrl.pathname.startsWith("/beer") && !token) {
+    return NextResponse.redirect(signInURL);
+  }
 
   if (req.nextUrl.pathname === "/" && token) {
     return NextResponse.redirect(homeURL);
