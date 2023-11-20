@@ -33,9 +33,6 @@ export default function Beer({
 
   useEffect(() => {
     handlreBeerId(Number(searchParams.id));
-    if (!token) {
-      router.push("/");
-    }
   }, [router, searchParams, token]);
 
   return (
